@@ -77,7 +77,10 @@ let
         {"Answer", Int64.Type},
         {"Index", Int64.Type},
         {"Elapsed", Int64.Type}
-    })
+    }),
+
+    // Step 11. Compute the elapsed seconds taken per question and save it as a decimal number
+    #"Compute Elapsed Seconds" = Table.AddColumn(#"Ensure Answer, Index, and Elapsed values are numbers", "Elapsed Seconds", each [Elapsed] / 1000, type number)
 
 in
-    #"Ensure Answer, Index, and Elapsed values are numbers"
+    #"Compute Elapsed Seconds"
